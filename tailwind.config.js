@@ -15,6 +15,9 @@ export default {
           LightGrayishBlue: 'hsl(223, 64%, 98%)',
         },
       },
+      maxWidth: {
+        '8xl': '87.5rem',
+      },
     },
     fontFamily: {
       kumbhSans: ['Kumbh Sans', 'sans-serif'],
