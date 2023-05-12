@@ -75,7 +75,7 @@ const ProductPage = () => {
   };
 
   return (
-    <>
+    <main>
       <div className="bg-white md:mx-auto md:flex md:max-w-7xl md:gap-10 md:px-4 md:py-16 lg:px-10">
         <div className="relative md:flex-1 md:self-center lg:max-w-lg">
           <div className="absolute inset-0 flex items-center justify-between px-4 md:hidden">
@@ -181,7 +181,7 @@ const ProductPage = () => {
           setClickedImage={setClickedImage}
         />
       )}
-    </>
+    </main>
   );
 };
 
