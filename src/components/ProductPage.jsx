@@ -4,7 +4,7 @@ import NextIcon from '../assets/icons/NextIcon';
 import MinusIcon from '../assets/icons/MinusIcon';
 import PlusIcon from '../assets/icons/PlusIcon';
 import useCartContext from '../hooks/useCartContext';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { products } from '../data';
 import Lightbox from './Lightbox';
 import ImageThumbnail from './ImageThumbnail';
@@ -73,6 +73,13 @@ const ProductPage = () => {
 
     document.body.style.overflow = 'unset';
   };
+
+  useEffect(() => {
+    setCart({
+      ...cart,
+      total: cart.qty * products[0].price,
+    });
+  }, [cart.qty]);
 
   return (
     <main>
