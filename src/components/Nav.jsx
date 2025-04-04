@@ -49,7 +49,10 @@ const Nav = ({ openMenu, handleMenuClick }) => {
         </div>
 
         <div className="flex gap-4 lg:gap-8">
-          <button onClick={handleCartBtn} className="relative">
+          <button
+            onClick={handleCartBtn}
+            className="relative px-2 transition-[outline-offset] focus-visible:outline-offset-4"
+          >
             {!emptyCart && (
               <span className="absolute -translate-x-1 -translate-y-2.5 rounded-xl bg-Primary-orange px-2 text-xs text-white">
                 {cart.qty}
@@ -96,13 +99,13 @@ const Nav = ({ openMenu, handleMenuClick }) => {
                   </div>
                   <button
                     onClick={handleRemoveFromCart}
-                    className="flex flex-1 cursor-pointer justify-center self-center text-Neutral-GrayishBlue"
+                    className="flex flex-1 cursor-pointer justify-center self-center text-Neutral-GrayishBlue transition-[outline-offset] focus-visible:outline-offset-4"
                   >
                     <DeleteIcon />
                   </button>
                 </div>
                 <div className="mt-6 px-5">
-                  <button className="w-full rounded-lg bg-Primary-orange py-3 font-bold text-Neutral-LightGrayishBlue transition-colors hover:bg-Primary-orange/70">
+                  <button className="w-full rounded-lg bg-Primary-orange py-3 font-bold text-Neutral-LightGrayishBlue transition-[background-color,outline-offset] hover:bg-Primary-orange/70 focus-visible:bg-Primary-orange/70 focus-visible:outline-offset-4">
                     Checkout
                   </button>
                 </div>

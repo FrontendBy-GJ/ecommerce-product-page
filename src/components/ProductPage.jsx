@@ -91,10 +91,19 @@ const ProductPage = () => {
           </div>
           <div className="hidden md:block md:cursor-pointer">
             <img
+              tabIndex={0}
               onClick={handleImgClick}
+              onKeyDown={(e) => {
+                if (e.code === 'Space' || e.code === 'Enter') {
+                  setClickedImage(mainImages[currentImage]);
+                  if (typeof window != 'undefined' && window.document) {
+                    document.body.style.overflow = 'hidden';
+                  }
+                }
+              }}
               src={mainImages[currentImage]}
               alt=""
-              className="h-full w-full rounded-xl object-cover"
+              className="h-full w-full rounded-xl object-cover transition-[outline-offset] focus-visible:outline-offset-4"
             />
             <div className="mt-6 flex justify-center gap-8">
               {products[0].images.thumbnails.map((t, index) => (
@@ -104,6 +113,11 @@ const ProductPage = () => {
                   alt={''}
                   onClick={() => setCurrentImage(index)}
                   isSelected={index === currentImage}
+                  onKeyDown={(e) => {
+                    if (e.code === 'Space' || e.code === 'Enter') {
+                      setCurrentImage(index);
+                    }
+                  }}
                 />
               ))}
             </div>
@@ -152,14 +166,14 @@ const ProductPage = () => {
                 <div className="mt-5 flex justify-between rounded-lg bg-Neutral-LightGrayishBlue px-5 py-4 md:mt-0 xl:w-64">
                   <button
                     onClick={handleMinusBtn}
-                    className="text-Primary-orange hover:text-Primary-orange/70"
+                    className="text-Primary-orange transition-[outline-offset] hover:text-Primary-orange/70 focus-visible:outline-offset-4"
                   >
                     <MinusIcon />
                   </button>
                   <span className="font-bold">{cart.qty}</span>
                   <button
                     onClick={handlePlusBtn}
-                    className="text-Primary-orange hover:text-Primary-orange/70"
+                    className="text-Primary-orange transition-[outline-offset] hover:text-Primary-orange/70 focus-visible:outline-offset-4"
                   >
                     <PlusIcon />
                   </button>
@@ -169,7 +183,8 @@ const ProductPage = () => {
                     handleAddToCart(p.product, p.price, p.images.main[0])
                   }
                   disabled={cart.qty === 0}
-                  className="mb-16 mt-3 flex w-full justify-center gap-4 rounded-lg bg-Primary-orange py-4 text-Neutral-LightGrayishBlue shadow-2xl shadow-Primary-orange/50 transition-colors hover:bg-Primary-orange/70 md:mt-5 xl:mt-0"
+                  tabIndex={0}
+                  className="mb-16 mt-3 flex w-full cursor-pointer justify-center gap-4 rounded-lg bg-Primary-orange py-4 text-Neutral-LightGrayishBlue shadow-2xl shadow-Primary-orange/50 transition-[colors,outline-offset] hover:bg-Primary-orange/70 focus-visible:bg-Primary-orange/70 focus-visible:outline-offset-4 disabled:cursor-not-allowed disabled:hover:bg-Primary-orange md:mt-5 xl:mt-0"
                 >
                   <CartIcon />
                   <span className="text-sm font-bold">Add to cart</span>
