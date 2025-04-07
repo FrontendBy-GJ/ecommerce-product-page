@@ -14,6 +14,7 @@ const ProductPage = () => {
   const [currentImage, setCurrentImage] = useState(0);
   const [slideIndex, setSlideIndex] = useState(0);
   const [clickedImage, setClickedImage] = useState(null);
+  const [isLightboxOpen, setIsLightboxOpen] = useState(false);
 
   const { cart, setCart, formatPrice, setEmptyCart } = useCartContext();
 
@@ -62,16 +63,7 @@ const ProductPage = () => {
 
   const handleImgClick = () => {
     setClickedImage(mainImages[currentImage]);
-
-    if (typeof window != 'undefined' && window.document) {
-      document.body.style.overflow = 'hidden';
-    }
-  };
-
-  const closeLightbox = () => {
-    setClickedImage(null);
-
-    document.body.style.overflow = 'unset';
+    setIsLightboxOpen(true);
   };
 
   useEffect(() => {
@@ -96,9 +88,7 @@ const ProductPage = () => {
               onKeyDown={(e) => {
                 if (e.code === 'Space' || e.code === 'Enter') {
                   setClickedImage(mainImages[currentImage]);
-                  if (typeof window != 'undefined' && window.document) {
-                    document.body.style.overflow = 'hidden';
-                  }
+                  setIsLightboxOpen(true);
                 }
               }}
               src={mainImages[currentImage]}
@@ -197,10 +187,11 @@ const ProductPage = () => {
 
       {clickedImage && (
         <Lightbox
-          closeLightbox={closeLightbox}
           mainImages={mainImages}
           clickedImage={clickedImage}
           setClickedImage={setClickedImage}
+          isLightboxOpen={isLightboxOpen}
+          setIsLightboxOpen={setIsLightboxOpen}
         />
       )}
     </main>
